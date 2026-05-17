@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bc13fe;
+  --color-deep-bg: #050508;
+  --font-sans: "Inter", "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --glass-bg: rgba(15, 15, 25, 0.7);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-deep-bg);
+    color: white;
+    cursor: none;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050510;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #00f2ff, #bc13fe);
+    border-radius: 10px;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-[var(--glass-bg)] backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  
+  .neon-glow-blue {
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+  }
+
+  .neon-glow-purple {
+    text-shadow: 0 0 10px rgba(188, 19, 254, 0.5), 0 0 20px rgba(188, 19, 254, 0.3);
+  }
+
+  .glitch-text {
+    @apply font-black tracking-tighter uppercase;
+    background: linear-gradient(to right, #fff, var(--color-neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0,243,255,0.5));
+  }
+
+  .badge {
+    @apply bg-neon-blue/10 border border-neon-blue text-neon-blue px-3 py-1 rounded-full text-[10px] uppercase font-bold;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .orb {
+    @apply absolute rounded-full blur-[120px] z-0 opacity-40 pointer-events-none;
+  }
+
+  .neon-border-blue {
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+  }
+
+  .animate-glitch {
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+}
+
+/* Hide cursor on mobile but show on desktop */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
